@@ -7,6 +7,8 @@ defmodule ExFCM.Mixfile do
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: description(),
+     package: package(),
      deps: deps()]
   end
 
@@ -20,13 +22,14 @@ defmodule ExFCM.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.9.0"},
-      {:poison, "~> 3.0"}
+      {:poison, "~> 3.0"},
+      {:ex_doc, ">= 0.0.0", only: :dev} 
     ]
   end
 
   defp description do
     """
-    A few sentences (a paragraph) describing the project.
+    Simple wrapper around Firebase Cloud Messaging that uses HTTPoison.
     """
   end
 
@@ -36,6 +39,6 @@ defmodule ExFCM.Mixfile do
      files: ["lib", "mix.exs"],
      maintainers: ["Jakub Hajto"],
      licenses: ["Apache 2.0"],
-     links: %{"GitHub" => "https://github.com/ericmj/postgrex"}]
+     links: %{"GitHub" => "https://github.com/Hajto/ExFCM"}]
   end
 end

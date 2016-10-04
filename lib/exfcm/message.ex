@@ -1,5 +1,23 @@
 defmodule ExFCM.Message do
 
+  @moduledoc """
+  This module is used to manage and send Messages.
+
+  To send a notification you have to provide a target using `target_device` (for a single device or group of devices) or using a `target_topic`.
+
+  ## Examples
+
+  ```
+
+  {:ok , result } = Message.put_data(%{"sample" => "true"})
+  |> Message.put_notification("Title","Description")
+  |> Message.target_topic("sample_giveaways")
+  |> Message.send
+
+  ```
+
+  """
+
   require Logger
 
   defstruct to: "", notification: nil, data: nil
@@ -20,9 +38,17 @@ defmodule ExFCM.Message do
     %__MODULE__{message | data: data}
   end
 
-  def target_device(message, device) do
+
+  @doc """
+  Sets target of notification. It should be either legal DeviceID obtained through a proper callback on client side and sent or a registered device group id
+  """
+  def target_device(message \\ %__MODULE__{}, device) do
     %{ message | to: device }
   end
+
+  @doc """
+  Sets target of notification. It should be only the name of the topic without "/topics/name".
+  """
 
   def target_topic(message \\ %__MODULE__{}, topic) do
     %{message | to: "/topics/#{topic}"}
