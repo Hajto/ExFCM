@@ -29,10 +29,18 @@ defmodule ExFCM.Message do
     defstruct title: nil, body: nil
   end
 
+  @doc """
+  Puts a Notification inside message. It will be displayed in tray when app is in background.
+  """
+
   def put_notification(message \\ %__MODULE__{}, title, data) do
     notification = %Notification{ title: title, body: data}
     %__MODULE__{message | notification: notification}
   end
+
+  @doc """
+  Puts a data fieldd into sending json, if it's present the `onMessageReceived` callback will be called on client.
+  """
 
   def put_data(message \\ %__MODULE__{}, data) do
     %__MODULE__{message | data: data}
@@ -40,7 +48,7 @@ defmodule ExFCM.Message do
 
 
   @doc """
-  Sets target of notification. It should be either legal DeviceID obtained through a proper callback on client side and sent or a registered device group id
+  Sets target of notification. It should be either legal DeviceID obtained through a proper callback on client side and sent or a registered device group id.
   """
   def target_device(message \\ %__MODULE__{}, device) do
     %{ message | to: device }
@@ -48,6 +56,8 @@ defmodule ExFCM.Message do
 
   @doc """
   Sets target of notification. It should be only the name of the topic without "/topics/name".
+
+  Topic has to match ``` [a-zA-Z0-9-_.~%]+  ``` regex.
   """
 
   def target_topic(message \\ %__MODULE__{}, topic) do

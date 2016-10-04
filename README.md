@@ -48,3 +48,7 @@ If [available in Hex](https://hex.pm/packages/exfcm), the package can be install
       [applications: [:exfcm]]
     end
     ```
+## TODO
+
+* Add custom filters
+* Add suport for additional params on notification
