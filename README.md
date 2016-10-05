@@ -4,7 +4,7 @@ Is a simple wrapper around Firebase Cloud Messaging that uses HTTPoison.
 
 ## Needed configuration
 
-```
+```elixir
 
 config :exfcm,
   server_key: "yourKeyFromConsole"
@@ -13,7 +13,7 @@ config :exfcm,
 
 ## To send message to topic
 
-```
+```elixir
 {:ok , result } = Message.put_data(%{"sample" => "true"})
     |> Message.put_notification("Github","is_awesome")
     |> Message.target_topic("aTopic")
@@ -22,7 +22,7 @@ config :exfcm,
 
 ## To send message to device or device group
 
-```
+```elixir
 {:ok , result } = Message.put_data(%{"sample" => "true"})
     |> Message.put_notification("Github","is_awesome")
     |> Message.target_device("aTopic")

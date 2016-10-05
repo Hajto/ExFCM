@@ -64,6 +64,10 @@ defmodule ExFCM.Message do
     %{message | to: "/topics/#{topic}"}
   end
 
+  @doc """
+  Sends synchronous message.
+  """
+
   def send(message) do
     as_json = Poison.encode!(message)
     Logger.debug as_json
